@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Las Termas de Caracalla · Daniel Carabajo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;600&display=swap">
+<style>
+:root{color-scheme:light;--ink:#1c1917;--mut:#6b6560;--acc:#c2410c;--sand:#faf6f1;--line:#ece5dc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:#fff;color:var(--ink);font:17px/1.65 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.1;margin:0}
+nav{position:sticky;top:0;z-index:20;background:#ffffffe8;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;gap:18px;align-items:center;padding:12px 22px;overflow-x:auto;white-space:nowrap}
+nav b{font-family:Fraunces,serif;color:var(--acc)}nav a{color:var(--mut);text-decoration:none;font-size:14px}nav a:hover{color:var(--acc)}
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--acc);width:0;z-index:30}
+.hero{padding:90px 22px 60px;text-align:center;max-width:900px;margin:auto}
+.hero small{letter-spacing:.2em;text-transform:uppercase;color:var(--acc);font-weight:600}
+.hero h1{font-size:clamp(40px,8vw,84px);margin:14px 0}.hero p{color:var(--mut);max-width:620px;margin:0 auto 26px}
+.btn{display:inline-block;background:#fed7aa;color:var(--ink);border:1px solid var(--ink);border-radius:99px;padding:13px 26px;font:600 15px Inter;cursor:pointer;text-decoration:none;transition:.2s}
+.btn:hover{background:#fdba74;transform:translateY(-2px)}.btn.o{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;max-width:900px;margin:10px auto 0;padding:0 22px}
+.stat{border:1px solid var(--line);border-radius:18px;padding:18px;text-align:center}.stat b{font:800 34px Fraunces;color:var(--acc);display:block}.stat span{font-size:13px;color:var(--mut)}
+section{max-width:900px;margin:0 auto;padding:64px 22px;opacity:0;transform:translateY(24px);transition:.7s}section.in{opacity:1;transform:none}
+section .n{color:var(--acc);font-weight:600;font-size:13px;letter-spacing:.15em}section h2{font-size:clamp(28px,5vw,44px);margin:6px 0 16px}
+.joke{background:var(--sand);border-left:4px solid var(--acc);padding:12px 16px;border-radius:0 12px 12px 0;margin:16px 0;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:16px}
+.card{border:1px solid var(--line);border-radius:16px;padding:16px;transition:.2s}.card:hover{transform:translateY(-4px);box-shadow:0 12px 30px #0001;border-color:var(--acc)}.card b{display:block;margin-bottom:4px}.card p{margin:0;font-size:14px;color:var(--mut)}
+.tl{border-left:2px solid var(--line);margin:18px 0 0 8px}.tl div{position:relative;padding:0 0 22px 24px}.tl div:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--acc)}.tl b{font-family:Fraunces;font-size:20px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.tabs button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:8px 14px;cursor:pointer;font:600 13px Inter}.tabs button.on{background:#fed7aa;color:var(--ink);border-color:var(--acc)}
+.panel{background:var(--sand);border-radius:18px;padding:20px;min-height:110px}.panel h3{font-size:24px;margin-bottom:6px}
+svg{max-width:100%;height:auto}.room{cursor:pointer;transition:.2s}.room:hover,.room.on{fill:#fed7aa!important}
+.dots{display:flex;gap:6px;margin:12px 0}.dots i{flex:1;height:5px;border-radius:9px;background:var(--line)}.dots i.on{background:var(--acc)}
+.flip{perspective:700px;height:150px;cursor:pointer}.flip div{position:relative;height:100%;transition:.6s;transform-style:preserve-3d}.flip.f div{transform:rotateY(180deg)}
+.flip span{position:absolute;inset:0;border:1px solid var(--line);border-radius:16px;padding:14px;backface-visibility:hidden;font-size:14px;display:flex;align-items:center;justify-content:center;text-align:center}.flip span+span{transform:rotateY(180deg);background:var(--sand);font-size:13px}
+.fire{animation:fl .5s infinite alternate}@keyframes fl{to{transform:scaleY(1.25);opacity:.7}}.heat{animation:up 1.2s infinite linear}@keyframes up{from{transform:translateY(8px);opacity:1}to{transform:translateY(-14px);opacity:0}}
+.game{border:1px solid var(--ink);border-radius:24px;padding:24px;background:#fff}.hud{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-weight:600;font-size:14px}
+.tm{height:6px;background:var(--line);border-radius:9px;overflow:hidden;margin:10px 0}.tm i{display:block;height:100%;background:var(--acc);width:100%}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 16px;font:15px Inter;cursor:pointer;transition:.15s}.opt:hover{border-color:var(--acc)}.opt.ok{background:#dcfce7;border-color:#16a34a}.opt.ko{background:#fee2e2;border-color:#dc2626}
+button{color:var(--ink)}.sc{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:14px auto;max-width:360px}.t{aspect-ratio:1;border:2px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:26px;background:#fff}.t.on{border:2px solid var(--acc);background:var(--sand)}.t.pop{animation:pop .5s}@keyframes pop{0%{transform:translateY(-60px) scale(1.6);opacity:0}70%{transform:translateY(4px)}100%{transform:none;opacity:1}}.slots,.chips2{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.slot{flex:1 1 90px;min-height:46px;border:2px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:6px;font-size:13px;text-align:center;color:var(--mut)}.slot.ok{border-style:solid;border-color:#16a34a;background:#dcfce7;color:var(--ink)}.chip{border:1px solid var(--ink);background:#fff;color:var(--ink);border-radius:99px;padding:9px 14px;font:600 14px Inter;cursor:pointer}.chip.ko{background:#fee2e2;border-color:#dc2626}.opt b{display:inline-block;width:26px;height:26px;border-radius:8px;background:var(--sand);text-align:center;margin-right:10px;line-height:26px}.opt:active{transform:scale(.98)}input{border:1px solid var(--line);border-radius:99px;padding:11px 16px;font:15px Inter;margin-right:8px}
+#chatb{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40}
+#chat{position:fixed;left:16px;bottom:calc(70px + env(safe-area-inset-bottom,0px));width:min(340px,calc(100vw - 32px));background:#fff;border:1px solid var(--ink);border-radius:20px;box-shadow:0 20px 50px #0003;display:none;z-index:40;overflow:hidden}
+#chat header{background:#fed7aa;color:var(--ink);padding:12px 16px;font-weight:600}#msgs{height:230px;overflow:auto;padding:12px;font-size:14px}
+#msgs p{margin:0 0 8px;padding:8px 12px;border-radius:14px;background:var(--sand);max-width:88%}#msgs p.u{background:#fed7aa;color:var(--ink);margin-left:auto}
+.chips{padding:0 12px 8px;display:flex;flex-wrap:wrap;gap:6px}.chips button{border:1px solid var(--line);background:#fff;border-radius:99px;font-size:12px;padding:5px 10px;cursor:pointer}
+#chat form{display:flex;border-top:1px solid var(--line)}#chat input{flex:1;border:0;margin:0;border-radius:0}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:40px 22px 90px}a{color:var(--acc)}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav><b>Caracalla</b><a href="#s1">Historia</a><a href="#plano">Plano</a><a href="#calor">Hipocausto</a><a href="#recorrido">Recorrido</a><a href="#curio">Curiosidades</a><a href="#web">Webgrafía</a><a href="#juego" style="color:var(--acc);font-weight:600">🎮 Juego</a></nav>
+
+<div class="hero">
+<small>Latín · Arquitectura, ingeniería y sociedad en la Antigua Roma</small>
+<h1>Las Termas de Caracalla</h1>
+<p>Un spa de 11 hectáreas con gimnasio, biblioteca y calefacción subterránea… en el año 216. Tu gimnasio de barrio acaba de sentirse pequeño. Por Daniel Carabajo, para Asun.</p>
+<a class="btn" href="#s1">Empezar el recorrido</a> <a class="btn o" href="#juego">Ir directo al juego</a>
+</div>
+<div class="stats">
+<div class="stat"><b data-n="11">0</b><span>hectáreas</span></div>
+<div class="stat"><b data-n="214">0</b><span>metros de largo</span></div>
+<div class="stat"><b data-n="2">0</b><span>km de galerías</span></div>
+<div class="stat"><b data-n="216">0</b><span>año de inauguración (d. C.)</span></div>
+</div>
+
+<div id="app"></div>
+
+<section id="plano"><span class="n">PLANO INTERACTIVO</span><h2>Toca las salas</h2>
+<p>Planta simétrica con un eje central. Pulsa una zona (esquema simplificado, no a escala).</p>
+<svg viewBox="0 0 400 300" id="svg"><rect x="8" y="8" width="384" height="284" rx="10" fill="#fff" stroke="#c9bfb3" stroke-dasharray="5"/>
+<rect class="room" data-k="biblio" x="20" y="110" width="50" height="80" fill="#faf6f1" stroke="#1c1917"/><rect class="room" data-k="biblio" x="330" y="110" width="50" height="80" fill="#faf6f1" stroke="#1c1917"/>
+<rect class="room" data-k="palestra" x="95" y="95" width="50" height="110" fill="#faf6f1" stroke="#1c1917"/><rect class="room" data-k="palestra" x="255" y="95" width="50" height="110" fill="#faf6f1" stroke="#1c1917"/>
+<circle class="room" data-k="caldarium" cx="200" cy="85" r="32" fill="#fdba74" stroke="#1c1917"/><rect class="room" data-k="tepidarium" x="170" y="125" width="60" height="25" fill="#fde68a" stroke="#1c1917"/>
+<rect class="room" data-k="frigidarium" x="155" y="155" width="90" height="45" fill="#bae6fd" stroke="#1c1917"/><rect class="room" data-k="natatio" x="155" y="208" width="90" height="34" fill="#e0f2fe" stroke="#1c1917" stroke-dasharray="4"/>
+<rect class="room" data-k="jardin" x="20" y="255" width="360" height="25" fill="#dcfce7" stroke="#16a34a"/>
+<g font-size="10" text-anchor="middle" fill="#1c1917" pointer-events="none"><text x="45" y="153">Biblio</text><text x="355" y="153">Biblio</text><text x="120" y="153">Palestra</text><text x="280" y="153">Palestra</text><text x="200" y="88">Caldarium</text><text x="200" y="141">Tepid.</text><text x="200" y="181">Frigidarium</text><text x="200" y="228">Natatio</text><text x="200" y="271">Jardines</text></g></svg>
+<div class="panel" id="pp"><h3>Elige una sala</h3><p>Aquí aparecerá su historia.</p></div></section>
+
+<section id="calor"><span class="n">INGENIERÍA</span><h2>El hipocausto, calefacción romana</h2>
+<p>El horno genera aire caliente que circula bajo el suelo, apoyado en pilares de ladrillo, y también por conductos en las paredes. Necesitaba mucha madera y trabajadores que alimentaran los hornos. Enciéndelo:</p>
+<button class="btn" id="hb">🔥 Encender el horno</button>
+<svg viewBox="0 0 400 150" id="hs"><rect x="0" y="0" width="400" height="60" fill="#f1f5f9" id="room"/><text x="200" y="35" text-anchor="middle" font-size="14">Sala (suelo)</text><rect x="0" y="60" width="400" height="10" fill="#a8a29e"/>
+<g fill="#b45309"><rect x="60" y="70" width="14" height="50"/><rect x="130" y="70" width="14" height="50"/><rect x="200" y="70" width="14" height="50"/><rect x="270" y="70" width="14" height="50"/></g>
+<rect x="0" y="120" width="400" height="10" fill="#78716c"/><rect x="340" y="80" width="60" height="40" fill="#d6d3d1"/><text x="370" y="104" text-anchor="middle" fill="#1c1917" font-size="11">Horno</text>
+<g id="fl" style="display:none"><text class="fire" x="370" y="78" text-anchor="middle" font-size="22">🔥</text><g class="heat" font-size="16"><text x="100" y="105">♨</text><text x="170" y="105">♨</text><text x="240" y="105">♨</text></g></g></svg>
+<div class="joke">Dato curioso: las galerías subterráneas sumaban unos 2 km. Había más vida bajo el suelo que en algunos pueblos.</div></section>
+
+<section id="recorrido"><span class="n">TU DÍA EN LAS TERMAS</span><h2>Recorrido de un visitante</h2>
+<div class="dots" id="rd"></div><div class="panel" id="rp"></div>
+<p><button class="btn o" id="rpv">← Atrás</button> <button class="btn" id="rnx">Siguiente →</button></p></section>
+
+<section id="curio"><span class="n">19 · CURIOSIDADES</span><h2>10 datos para lucirte</h2><p>Toca cada tarjeta para girarla.</p><div class="grid" id="cg"></div></section>
+
+<section id="web"><span class="n">21 · WEBGRAFÍA</span><h2>Fuentes</h2><div id="wl"></div></section>
+
+<section id="juego"><span class="n">PRUEBA FINAL</span><h2>Construye las termas</h2>
+<p>Cada acierto levanta una pieza de tus termas. 3 niveles, 3 vidas, tiempo limitado y tres tipos de reto: elegir, verdadero o falso y ordenar. Inspirado en las vidas y rachas de Duolingo y en los juegos de construir ciudades: los que se juegan «una partida más». Sin días ni esperas: se juega ahora mismo.</p>
+<div class="game" id="g"></div><div class="panel" style="margin-top:16px"><h3>🏆 Récords</h3><div id="rec"></div></div></section>
+
+<footer>Trabajo de Latín · Daniel Carabajo · Hecho con cariño, mármol virtual y cero euros.</footer>
+
+<button class="btn" id="chatb">💬 Dudas para Asun</button>
+<div id="chat"><header>Dudas para Asun</header><div id="msgs"></div><div class="chips" id="ch"></div><form id="cf"><input id="ci" placeholder="Pregunta sobre las termas…" autocomplete="off"><button class="btn" style="padding:8px 16px">→</button></form></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const S=[
+["1","Introducción","Las Termas de Caracalla fueron uno de los complejos de baños públicos más importantes de la Antigua Roma, construidas a comienzos del siglo III d. C. Eran enormes, lujosas y tenían calefacción y agua de ingeniería avanzada.","No eran solo para lavarse: se hacía ejercicio, se leía y se cotilleaba. Las redes sociales de entonces tenían mármol."],
+["2","Origen y evolución de las termas","Nacieron de los primeros baños públicos romanos, con influencia de los baños y gimnasios griegos. En la República ya había baños, pero fue en el Imperio cuando llegaron los grandes complejos: los emperadores los pagaban para dar servicio a la gente y, de paso, presumir de poder. Mover tanta agua, calentar salas y evacuar el agua usada impulsó la ingeniería.","Moraleja: si quieres que el pueblo te quiera, regálale un spa."],
+["3","Historia de las Termas","Están en Roma, cerca del monte Aventino y la vía Apia. Las obras principales fueron entre 212 y 216 d. C. y siguieron con decoraciones después. Funcionaron siglos, con varias restauraciones, hasta el año 537, cuando las guerras entre bizantinos y ostrogodos cortaron el agua a Roma. Después se llevaron mármoles y columnas a otros edificios, pero quedaron muros enormes que hoy se estudian.","Sin agua no hay termas. Fin de la fiesta."]
+];
+const T=[["211","Caracalla emperador","Marco Aurelio Antonino, hijo de Septimio Severo (dinastía de los Severos). Gobierna hasta 217."],["212","Constitutio Antoniniana y obras","Concede la ciudadanía romana a la mayoría de los habitantes libres (con excepciones). Empieza la construcción principal. El proyecto pudo arrancar con Septimio Severo."],["216","Inauguración","Se inaugura el edificio central bajo Caracalla."],["235","Fin de las obras","Siguen con Heliogábalo y Alejandro Severo hasta hacia 235."],["537","Abandono","Las guerras cortan el suministro de agua."]];
+const R={caldarium:["Caldarium","Sala de baños calientes, de planta circular y gran cúpula. Los hornos calentaban agua y ambiente con aire caliente bajo el suelo y por las paredes. Era una de las salas más impresionantes."],tepidarium:["Tepidarium","Baño templado: la zona de transición entre lo caliente y lo frío, y para descansar y prepararse."],frigidarium:["Frigidarium","Baños de agua fría en un gran espacio cubierto, con bóvedas y decoración monumental. Se usaba después de otras salas."],natatio:["Natatio","La gran piscina descubierta, al final del eje principal, con luz solar directa."],palestra:["Palestras","Dos, simétricas a los lados del bloque central, para ejercicio físico. Después tocaba bañarse."],biblio:["Bibliotecas","Dos, simétricas, en el recinto exterior: las termas también eran cultura."],jardin:["Jardines y paseos","Espacios abiertos para caminar, descansar y conversar sin salir del recinto."]};
+const D=[["Vestuarios (apodyteria)","Aquí se dejaba la ropa. Se usaba el strigil, una herramienta curva para quitarse aceite y suciedad de la piel tras el ejercicio."],["Caldarium","Baño caliente, planta circular y cúpula."],["Tepidarium","Baño templado y descanso."],["Frigidarium","Agua fría, grandes bóvedas."],["Natatio","Piscina al aire libre."],["Palestras","Ejercicio físico, dos simétricas."],["Bibliotecas","Dos, en el recinto exterior."],["Jardines","Paseo y conversación."],["Letrinas","Poco monumentales pero esenciales; necesitaban agua que entrara y saliera."]];
+const M=[["Hormigón (opus caementicium)","Mortero con trozos de piedra: muros, cimientos y grandes bóvedas."],["Ladrillo","Muros, revestimientos y los pilares del hipocausto."],["Piedra y travertino","Partes resistentes y algo de ornamento."],["Mármol","Revestía paredes y suelos y adornaba columnas."],["Granito","Columnas y elementos destacados."],["Mosaicos","Teselas formando figuras geométricas, humanas y escenas deportivas."],["Estuco","Revestir y decorar paredes y techos."]];
+const REC=[["🧥","Vestuarios","Dejas la ropa en el apodyterium. Nadie te la vigila: cuidado."],["🏋️","Palestra","Ejercicio, que el baño se gana."],["🌡️","Tepidarium","Sala templada para entrar en calor poco a poco."],["♨️","Caldarium","Baño caliente bajo la gran cúpula."],["🧊","Frigidarium","Chapuzón frío para despertar."],["📚","Descanso","Jardín, charla o biblioteca. No todos seguían el mismo orden y la visita ocupaba buena parte del día."]];
+const CU=[["Nombre original","Thermae Antoninianae."],["Tamaño","Unas 11 hectáreas contando edificio y exteriores."],["Galerías","Unos 2 km para combustible e instalaciones técnicas."],["Molino subterráneo","Había un molino entre las instalaciones de servicio."],["Mitreo","En el subsuelo se conserva un santuario del dios Mitra."],["Mosaicos deportivos","Boxeadores y luchadores: el ejercicio importaba."],["Esculturas","Hércules Farnesio y Toro Farnesio, hoy en Nápoles."],["Mucha leña","Los hornos necesitaban madera sin parar."],["Aqua Antoniniana","Derivación del Aqua Marcia; cruzaba la vía Apia por el arco de Druso."],["Otro aspecto","Mármoles de colores, esculturas y columnas hoy perdidos en gran parte."]];
+const WEB=[["Ministerio de Cultura de Italia","https://cultura.gov.it/luogo/terme-di-caracalla"],["Turismo de Roma","https://www.turismoroma.it/en/places/baths-caracalla"],["Superintendencia Especial de Arqueología de Roma","https://www.soprintendenzaspecialeroma.it/schede/terme-di-caracalla_3009/"],["Museos Vaticanos (mosaicos)","https://www.museivaticani.va/"],["Museo Arqueológico Nacional de Nápoles (Farnesio)","https://www.museoarcheologiconapoli.it/"]];
+const P=[
+["4","El emperador y el contexto político","Caracalla (Marco Aurelio Antonino) reinó de 211 a 217 y fue hijo de Septimio Severo. Sus obras públicas mejoraban la ciudad y reforzaban su imagen. En 212 promulgó la <i>Constitutio Antoniniana</i> (ciudadanía para casi todos los libres). Las termas eran, a la vez, servicio práctico y escaparate del poder imperial.","Arquitecto: no se sabe. Seguro que fue un equipo de arquitectos, ingenieros, artesanos y obreros, pero ninguno firmó en la entrada."],
+["6","Características generales","Unas 11 hectáreas; bloque principal de unos 214 × 110 m. Cabían miles de usuarios, con distribución simétrica, espacios variados (piscinas, gimnasios, bibliotecas, jardines), decoración lujosa y ingeniería avanzada: acueductos, hornos, calderas y calefacción subterránea.",""],
+["7","Forma y distribución","Planta rectangular con recinto exterior (bibliotecas, jardines, paseos, servicios) y bloque central con caldarium, tepidarium, frigidarium y natatio sobre un eje longitudinal; palestras y vestuarios a los lados. La simetría ordenaba la circulación y mezclaba salas cubiertas con zonas abiertas.",""],
+["11","Abastecimiento del agua","Hacía falta suministro constante. Se construyó una derivación del acueducto Aqua Marcia, el <i>Aqua Antoniniana</i>, que cruzaba la vía Apia aprovechando el arco de Druso. El agua se repartía por las salas (calentada en las calientes) y luego había que evacuarla y cuidar las tuberías.","Los romanos reciclaban infraestructuras antes de que fuera moda."],
+["13","Técnicas de ingeniería","Bóvedas y cúpulas pasaban el peso a muros y apoyos, creando grandes salas sin dividirlas. Muros gruesos y hormigón sostenían todo. Agua y calefacción se integraron en el diseño, con espacios subterráneos para acceder a ellos.",""],
+["14","Decoración y obras de arte","Mármoles de colores, mosaicos, columnas y esculturas. Destacan mosaicos de atletas, boxeadores y luchadores y esculturas como el Hércules Farnesio y el Toro Farnesio (Museo de Nápoles). Mucho se retiró y reutilizó, así que las ruinas no muestran el aspecto original.",""],
+["15","Vida cotidiana","Lugar de encuentro: conversar, hacer ejercicio, descansar y leer, intercambiar noticias y relaciones personales o comerciales. Pero no todos disfrutaban igual: el acceso y el tiempo libre dependían de cada persona. Y el spa funcionaba porque otros limpiaban, acarreaban agua y atendían los hornos.",""],
+["16","Importancia social y política","Socialmente: higiene, deporte, lectura y convivencia. Políticamente: demostraba el poder del emperador, con enormes recursos y organización, y asociaba su nombre a un servicio para el pueblo. Servicio útil y propaganda de lujo.",""],
+["17","Trabajadores y mantenimiento","Albañiles levantaban muros, canteros trabajaban la piedra, artesanos hacían mosaicos y esculturas, otros se encargaban de tuberías y calefacción. Luego había que mantener hornos, llevar madera, controlar el agua y reparar. Las galerías permitían hacerlo sin cruzar zonas públicas. Dependían de numerosos esclavos y operarios: grandeza sobre una sociedad muy desigual.",""],
+["18","Hoy","Es uno de los monumentos arqueológicos más importantes de Roma. Ya no son baños, pero sus ruinas permiten estudiar la arquitectura y ver dimensiones, muros y distribución. Las reconstrucciones ayudan a imaginar los interiores originales.",""],
+["20","Conclusión","Impulsadas por Caracalla e inauguradas en 216, reunían piscinas, salas calientes y frías, gimnasios, bibliotecas y jardines. Simetría, hormigón y bóvedas crearon espacios monumentales; calefacción y agua mostraban una infraestructura muy avanzada; y a la vez eran servicio social y símbolo político. Dejaron de funcionar en 537, pero siguen enseñándonos cómo vivía y construía Roma.","Utilidad, arte, ingeniería y poder en un solo edificio. Roma sabía hacer las cosas a lo grande."]];
+const sec=(n,t,b,j,x='')=>`<section id="s${n}"><span class="n">${n}</span><h2>${t}</h2><p>${b}</p>${j?`<div class="joke">${j}</div>`:''}${x}</section>`;
+let h='';S.forEach((s,i)=>{h+=sec(s[0],s[1],s[2],s[3],i==2?'<div class="tl">'+T.map(e=>`<div><b>${e[0]} d. C.</b> · ${e[1]}<br><small style="color:var(--mut)">${e[2]}</small></div>`).join('')+'</div>':'')});
+P.forEach(s=>{let x='';if(s[0]=='7')x='<p style="color:var(--mut);font-size:14px">Mira el plano interactivo más abajo.</p>';h+=sec(s[0],s[1],s[2],s[3],x);
+if(s[0]=='7'){h+=`<section id="dep"><span class="n">8 · DEPENDENCIAS</span><h2>Las principales dependencias</h2><div class="tabs" id="tb">${D.map((d,i)=>`<button data-i="${i}">${d[0].split(' ')[0]}</button>`).join('')}</div><div class="panel" id="dp"></div></section>`}
+if(s[0]=='13'){h+=`<section id="mat"><span class="n">12 · MATERIALES</span><h2>De qué estaba hecho</h2><div class="grid">${M.map(m=>`<div class="card"><b>${m[0]}</b><p>${m[1]}</p></div>`).join('')}</div></section>`}});
+$('#app').innerHTML=h;
+// orden: materiales antes de técnicas no es necesario; se mantiene por bloques
+$('#dp').innerHTML='';const sd=i=>{$('#dp').innerHTML=`<h3>${D[i][0]}</h3><p>${D[i][1]}</p>`;document.querySelectorAll('#tb button').forEach((b,j)=>b.classList.toggle('on',j==i))};
+$('#tb').onclick=e=>e.target.dataset.i&&sd(+e.target.dataset.i);sd(0);
+document.querySelectorAll('.room').forEach(r=>r.onclick=()=>{const v=R[r.dataset.k];$('#pp').innerHTML=`<h3>${v[0]}</h3><p>${v[1]}</p>`;document.querySelectorAll('.room').forEach(x=>x.classList.toggle('on',x==r))});
+let hot=0;$('#hb').onclick=()=>{hot=!hot;$('#fl').style.display=hot?'block':'none';$('#room').setAttribute('fill',hot?'#fed7aa':'#f1f5f9');$('#hb').textContent=hot?'❄️ Apagar el horno':'🔥 Encender el horno'};
+let ri=0;const rr=()=>{$('#rd').innerHTML=REC.map((_,i)=>`<i class="${i<=ri?'on':''}"></i>`).join('');const r=REC[ri];$('#rp').innerHTML=`<h3>${r[0]} ${r[1]}</h3><p>${r[2]}</p>`};
+$('#rnx').onclick=()=>{ri=Math.min(5,ri+1);rr()};$('#rpv').onclick=()=>{ri=Math.max(0,ri-1);rr()};rr();
+$('#cg').innerHTML=CU.map((c,i)=>`<div class="flip" onclick="this.classList.toggle('f')"><div><span><b>${i+1}. ${c[0]}</b></span><span>${c[1]}</span></div></div>`).join('');
+$('#wl').innerHTML=WEB.map((w,i)=>`<p>${i+1}. <b>${w[0]}</b><br><a href="${w[1]}" target="_blank" rel="noopener">${w[1]}</a></p>`).join('');
+// scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll('section').forEach(s=>io.observe(s));
+addEventListener('scroll',()=>{$('#bar').style.width=scrollY/(document.body.scrollHeight-innerHeight)*100+'%'});
+document.querySelectorAll('[data-n]').forEach(e=>{const t=+e.dataset.n;let v=0;const k=setInterval(()=>{v+=Math.ceil(t/40);if(v>=t){v=t;clearInterval(k)}e.textContent=v},35)});
+// juego
+const LV=["Aprendiz","Arquitecto","Emperador"],PC=['🧱','🧱','🧱','🧱','🧱','🧱','🪨','🪨','🪨','🪨','🪨','🪨','🏛️','🏛️','🏛️','🏺','🌿','🏊'];
+const C=(q,o,a,t)=>({k:'c',q,o,a,t}),V=(q,a,t)=>({k:'c',q,o:['✅ Verdadero','❌ Falso'],a,t,vf:1}),O=(q,o,t)=>({k:'o',q,o,t});
+const Q=[[C("¿Qué sala era la de baños calientes?",["Caldarium","Frigidarium","Natatio","Biblioteca"],0,"Caldarium viene de calor."),C("¿En qué año se inauguraron?",["116","216","337","537"],1,"Año 216 d. C."),V("Caracalla impulsó la construcción de las termas.",0,"Verdadero: las obras principales fueron entre 212 y 216."),C("¿Para qué servía el strigil?",["Cocinar","Quitar aceite y suciedad","Calentar agua","Escribir"],1,"Herramienta curva para la piel."),V("La natatio era una piscina cubierta.",1,"Falso: era la gran piscina descubierta."),C("¿Qué eran las palestras?",["Espacios de ejercicio","Letrinas","Hornos","Jardines"],0,"Dos, simétricas a los lados del bloque central.")],
+[C("¿Cómo se llama el sistema de calefacción?",["Aqueductus","Hypocaustum","Opus signinum","Mitreo"],1,"Aire caliente bajo el suelo."),V("El suelo se sostenía sobre pilares de ladrillo.",0,"Verdadero: dejaban una cámara para el aire caliente."),C("¿Cómo se llamaba la derivación que traía el agua?",["Aqua Antoniniana","Aqua Virgo","Cloaca Máxima","Aqua Appia"],0,"Derivación del Aqua Marcia."),C("¿Qué es el opus caementicium?",["Un mosaico","Hormigón romano","Un mármol","Un horno"],1,"Mortero con fragmentos de piedra."),O("Ordena el recorrido que propone el trabajo",["Vestuarios","Palestra","Tepidarium","Caldarium","Frigidarium"],"Orden típico, aunque no todos lo seguían."),C("¿Qué son las teselas?",["Piezas de mosaico","Columnas","Tuberías","Hornos"],0,"Pequeñas piezas que forman los mosaicos.")],
+[C("¿Qué concedió la Constitutio Antoniniana?",["Ciudadanía a casi todos los libres","Termas gratis","Fin de la esclavitud","Un nuevo calendario"],0,"En 212 d. C., con excepciones."),V("Dejaron de usarse en 537 porque la guerra cortó el agua.",0,"Verdadero: bizantinos contra ostrogodos."),C("¿Dónde están el Hércules y el Toro Farnesio?",["Museo de Nápoles","Coliseo","Museos Vaticanos","Louvre"],0,"Museo Arqueológico Nacional de Nápoles."),V("Las galerías subterráneas medían unos 20 km.",1,"Falso: unos 2 km."),C("¿Qué dios tiene un mitreo en el subsuelo?",["Júpiter","Mitra","Baco","Vulcano"],1,"Un santuario de Mitra."),O("Ordena la cronología",["212 · Constitutio y obras","216 · Inauguración","235 · Fin de las obras","537 · Abandono"],"De la construcción al abandono.")]];
+let st,tk,tl,done;const sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+const rec=()=>{try{return JSON.parse(localStorage.getItem('termasRec')||'[]')}catch(e){return[]}};
+const showRec=()=>{$('#rec').innerHTML=rec().map((r,i)=>`${['🥇','🥈','🥉','4.','5.'][i]} ${r.n} — ${r.s} pts`).join('<br>')||'Aún no hay récords. ¡Sé el primero!'};
+const scene=()=>{let g='';for(let p=0;p<18;p++){const i=(2-Math.floor(p/6))*6+p%6;g+=`<div class="t ${i<st.b?'on':''}" id="t${i}">${i<st.b?PC[i]:''}</div>`}return `<div class="sc">${g}</div>`};
+const hud=()=>`<span>Nivel ${st.l+1} · ${LV[st.l]}</span><span>${'❤️'.repeat(st.v)}${'🖤'.repeat(3-st.v)}</span><span>${st.c>1?'🔥':''} Combo x${st.c}</span><span>⭐ ${st.s}</span>`;
+const boom=el=>{const r=el.getBoundingClientRect();for(let i=0;i<14;i++){const s=document.createElement('span'),a=Math.random()*6.28,d=50+Math.random()*90;s.textContent=['✨','🎉','🏛️','⭐'][i%4];s.style.cssText=`position:fixed;left:${r.left+r.width/2}px;top:${r.top}px;z-index:60;pointer-events:none;font-size:20px`;document.body.append(s);s.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d-40}px) rotate(${a*60}deg)`,opacity:0}],{duration:900}).onfinish=()=>s.remove()}};
+const home=()=>{$('#g').innerHTML=`<div style="text-align:center"><div style="font-size:64px">🏛️</div><h3>¿Podrás levantar las termas?</h3><p style="color:var(--mut)">Acierta para colocar piezas. Fallar cuesta vidas. Los combos suman puntos.</p><input id="pn" placeholder="Tu nombre" value="Asun"><button class="btn" id="go">Jugar ▶</button></div>`;$('#go').onclick=()=>{st={n:$('#pn').value||'Anónimo',l:0,q:0,v:3,s:0,c:0,b:0};ask()};showRec()};
+const ask=()=>{const q=Q[st.l][st.q];clearInterval(tk);done=0;const T=q.k=='o'?30:15;tl=T;
+$('#g').innerHTML=`<div class="hud" id="hud">${hud()}</div>${scene()}<div class="tm"><i id="tm"></i></div><div id="qc"><h3>${q.q}</h3><div id="bd"></div></div><div id="fb"></div>`;
+if(q.k=='c'){const o=q.o.map((x,i)=>[x,i]),L=q.vf?o:sh(o);$('#bd').innerHTML=L.map((p,j)=>`<button class="opt" data-i="${p[1]}"><b>${q.vf?'':'ABCD'[j]}</b>${p[0]}</button>`).join('');
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(done)return;const ok=+b.dataset.i==q.a;b.classList.add(ok?'ok':'ko');document.querySelectorAll('.opt').forEach(x=>{if(+x.dataset.i==q.a)x.classList.add('ok')});fin(ok,b)})}
+else{let k=0;$('#bd').innerHTML=`<div class="slots">${q.o.map((_,i)=>`<div class="slot" id="s${i}">${i+1}</div>`).join('')}</div><div class="chips2">${sh(q.o).map(x=>`<button class="chip">${x}</button>`).join('')}</div>`;
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{if(done)return;if(b.textContent==q.o[k]){const s=$('#s'+k);s.textContent=b.textContent;s.classList.add('ok');b.style.visibility='hidden';k++;if(k==q.o.length)fin(1,s)}else{b.classList.add('ko');fin(0,b)}})}
+tk=setInterval(()=>{tl-=.1;const e=$('#tm');if(!e)return;e.style.width=tl/T*100+'%';e.style.background=tl<5?'#dc2626':tl<9?'#f59e0b':'#c2410c';if(tl<=0)fin(0,e)},100)};
+const fin=(ok,el)=>{if(done)return;done=1;clearInterval(tk);const q=Q[st.l][st.q];
+if(ok){st.c++;st.s+=100+st.c*20+Math.round(Math.max(tl,0)*3);const e=$('#t'+st.b);e.textContent=PC[st.b];e.className='t on pop';st.b++;boom(e)}else{st.c=0;st.v--;$('#qc').animate([{transform:'translateX(0)'},{transform:'translateX(-10px)'},{transform:'translateX(10px)'},{transform:'translateX(0)'}],{duration:350})}
+$('#hud').innerHTML=hud();document.querySelectorAll('.opt,.chip').forEach(b=>b.disabled=true);
+$('#fb').innerHTML=`<div class="joke">${ok?'¡Bien! ':'Casi. '}${q.t}</div><button class="btn" id="nx">Siguiente →</button>`;
+$('#nx').onclick=()=>{st.q++;if(st.v<=0)return end(0);if(st.q>=6){st.q=0;st.l++;if(st.l>2)return end(1);lvl()}else ask()}};
+const lvl=()=>{boom($('#g'));$('#g').innerHTML=`<div style="text-align:center"><div style="font-size:56px">🎉</div><h3>Nivel superado</h3><p>Llevas ${st.s} puntos y ${st.v} vidas. Ahora eres <b>${LV[st.l]}</b>.</p>${scene()}<button class="btn" id="nl">Continuar ▶</button></div>`;$('#nl').onclick=ask};
+const end=w=>{const a=rec();a.push({n:st.n,s:st.s});a.sort((x,y)=>y.s-x.s);try{localStorage.setItem('termasRec',JSON.stringify(a.slice(0,5)))}catch(e){}
+const s=st.b>=18?3:st.b>=12?2:st.b>=6?1:0;
+$('#g').innerHTML=`<div style="text-align:center"><div style="font-size:44px">${'⭐'.repeat(s)||'🏚️'}</div><h3>${w?'¡Emperador de las termas!':'Se acabaron las vidas'}</h3><p>${st.n}: <b>${st.s} puntos</b> y ${st.b} de 18 piezas colocadas.</p>${scene()}<button class="btn" id="rp2">Jugar otra vez</button> <button class="btn o" id="cp">Copiar mi resultado</button></div>`;
+$('#rp2').onclick=home;$('#cp').onclick=()=>{try{navigator.clipboard.writeText(`Hice ${st.s} puntos en Construye las termas de Caracalla`);$('#cp').textContent='¡Copiado!'}catch(e){}};showRec();if(w)boom($('#g'))};
+home();
+// asistente
+const KB=[[/caldarium|caliente/,"El caldarium era la sala de baños calientes, circular y con gran cúpula, calentada con aire de hornos bajo el suelo."],[/tepidarium|templad/,"El tepidarium era el baño templado, zona de transición y descanso."],[/frigidarium|fri[oa]/,"El frigidarium era la sala de agua fría, con grandes bóvedas y decoración monumental."],[/natatio|piscina/,"La natatio era la gran piscina descubierta, al final del eje principal."],[/hipocaust|calefac|horno/,"El hipocausto conducía aire caliente de hornos bajo el suelo, sobre pilares de ladrillo, y por conductos en las paredes."],[/agua|acueducto|aqua/,"El agua llegaba por el Aqua Antoniniana, derivación del Aqua Marcia, que cruzaba la vía Apia por el arco de Druso."],[/fecha|cuando|a[nñ]o|inaugur/,"Obras principales entre 212 y 216; inauguración en 216; obras posteriores hasta hacia 235; abandono en 537."],[/arquitecto/,"No se conoce con seguridad el arquitecto: fue un equipo de arquitectos, ingenieros y artesanos."],[/caracalla|emperador|constitutio/,"Caracalla (Marco Aurelio Antonino) reinó de 211 a 217 y en 212 promulgó la Constitutio Antoniniana."],[/tama[nñ]o|medi|hect/,"Unas 11 hectáreas; el bloque central, unos 214 × 110 m."],[/material|hormig|marmol|mármol|ladrillo|mosaico/,"Hormigón romano, ladrillo, piedra y travertino, mármol, granito, mosaicos de teselas y estuco."],[/esclav|trabaj|mantenim/,"Albañiles, canteros, artesanos y especialistas, además de muchos esclavos y operarios que mantenían hornos y agua."],[/strigil/,"El strigil era una herramienta curva para retirar aceite y suciedad de la piel."],[/mitra|mitreo|molino|galer/,"Bajo el edificio había unos 2 km de galerías, un molino y un mitreo dedicado a Mitra."],[/farnesio|escultura|nápoles|napoles/,"El Hércules Farnesio y el Toro Farnesio se conservan en el Museo Arqueológico Nacional de Nápoles."],[/537|abandon|fin/,"Dejaron de usarse en 537, cuando las guerras entre bizantinos y ostrogodos cortaron el agua a Roma."],[/hola|buenas/,"¡Hola! Pregúntame lo que quieras de las termas."]];
+const say=(t,u)=>{const p=document.createElement('p');p.textContent=t;if(u)p.className='u';$('#msgs').append(p);$('#msgs').scrollTop=9e9};
+const reply=q=>{say(q,1);const m=KB.find(k=>k[0].test(q.toLowerCase()));say(m?m[1]:"Esa no la tengo en mi apunte. Prueba con caldarium, agua, fechas, materiales o Caracalla.")};
+say("Hola, soy el asistente de dudas. Respondo con los apuntes de este trabajo, sin internet.");
+$('#ch').innerHTML=['¿Cuándo se inauguraron?','¿Qué es el hipocausto?','¿Quién fue Caracalla?','¿Cómo llegaba el agua?'].map(t=>`<button>${t}</button>`).join('');
+$('#ch').onclick=e=>e.target.tagName=='BUTTON'&&reply(e.target.textContent);
+$('#cf').onsubmit=e=>{e.preventDefault();const v=$('#ci').value.trim();if(v){reply(v);$('#ci').value=''}};
+$('#chatb').onclick=()=>{const c=$('#chat');c.style.display=c.style.display=='block'?'none':'block'};
+</script>
+</body>
+</html>
